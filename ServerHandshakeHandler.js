@@ -202,16 +202,7 @@ ServerHandshakeHandler.prototype.send_serverHello = function() {
         cipherSuite: cipher.id,
         compressionMethod: 0,
 
-        // TODO: Remove the requirement for extensions. Currently packets with
-        // 0 extensions will serialize wrong. I don't even remember which
-        // extension this is. Maybe heartbeat? Whatever it is, we definitely do
-        // not implement it. :)
-        extensions: [
-            new DtlsExtension({
-                extensionType: 0x000f,
-                extensionData: new Buffer([ 1 ])
-            })
-        ]
+        extensions: []
     });
 
     log.info( 'Server cipher used:', cipher.id );
